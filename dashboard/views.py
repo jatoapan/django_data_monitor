@@ -1,13 +1,13 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
 import requests
 from django.conf import settings
 from datetime import datetime
 from collections import defaultdict
 import json
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def index(request):
     response = requests.get(settings.API_URL) 
     posts = response.json()
@@ -36,9 +36,9 @@ def index(request):
     }
     return render(request, 'dashboard/index.html', data)
 
-def dashboard(request):
-    # return HttpResponse("¡Bienvenido a la aplicación Django!")
-    return render(request, 'dashboard/base.html')
+# def dashboard(request):
+#     # return HttpResponse("¡Bienvenido a la aplicación Django!")
+#     return render(request, 'dashboard/base.html')
 
 def get_users_topics(response):
     return [{'name': element['name'], 'topic': element['topic']} for element in response.values()]
