@@ -22,7 +22,7 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Indicador 1
+            Total de registros
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
             <!-- START - valor del indicador 1 -->
@@ -43,12 +43,12 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Indicador 2
+            Registros este mes
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
 
             <!-- START - valor del indicador 2 -->
-            Valor 2
+            {{ month_responses }}
             <!-- END - valor del indicador 2 -->
 
           </p>
@@ -66,12 +66,12 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Indicador 3
+            Registros esta semana
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
 
             <!-- START - valor del indicador 3 -->
-            Valor 3
+            {{ week_responses }}
             <!-- END - valor del indicador 3 -->
 
           </p>
@@ -89,12 +89,12 @@
         </div>
         <div>
           <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-            Indicador 4
+            Registros hoy
           </p>
           <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
 
             <!-- START - valor del indicador 4 -->
-            Valor 4
+            {{ today_responses }}
             <!-- END - valor del indicador 4 -->
 
           </p>
@@ -113,26 +113,28 @@
             <thead>
               <tr
                 class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                <th class="px-4 py-3">Columna 1</th>
-                <th class="px-4 py-3">Columna 2</th>
+                <th class="px-4 py-3">Nombre</th>
+                <th class="px-4 py-3">Tema</th>
               </tr>
             </thead>
             <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
 
+              {% for topic in topics %}
               <!-- START - respuestas -->
               <tr class="text-gray-700 dark:text-gray-400">
                 <td class="px-4 py-3 text-sm">
                   <!-- START - fila.valor1 -->
-                  fila.valor1
+                  {{ topic.name }}
                   <!-- END - fila.valor1 -->
                 </td>
                 <td class="px-4 py-3 text-sm">
                   <!-- START - fila.valor2 -->
-                  fila.valor2
+                  {{ topic.topic }}
                   <!-- END - fila.valor2 -->
                 </td>
               </tr>
               <!-- END - respuestas -->
+              {% endfor %}
 
             </tbody>
           </table>
@@ -141,7 +143,7 @@
           class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
           <span class="flex items-center col-span-3">
             <!-- START - # total de respuestas -->
-            XXX
+            {{ total_responses }}
             <!-- END - # total de respuestas -->
             respuestas
           </span>
@@ -153,7 +155,7 @@
       <div class="row-span-1 grid gap-6 mb-8 md:grid-cols-12">
         <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
           <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-            Título del gráfico
+            Registros a lo largo del tiempo
           </h4>
           <canvas id="line"></canvas>
         </div>
@@ -164,3 +166,7 @@
 
   </div>
 </main>
+<!-- Script para datos del gráfico -->
+<script>
+  window.chartData = {{ chart_data|safe }};
+</script>
