@@ -26,7 +26,15 @@ SECRET_KEY = "django-insecure-n+rv#ao(*ejao@5=$5w)n1*034slqp6d7z9954hs$$48gl@_^x
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+  "https://*.app.github.dev", # Solo si utiliza Codespaces
+  "https://localhost:8000",
+  "http://127.0.0.1:8000"
+]
 
 
 # Application definition
@@ -38,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "dashboard",
 ]
 
 MIDDLEWARE = [
@@ -127,5 +136,5 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # API_URL = 'https://jsonplaceholder.typicode.com/posts'
-API_URL = "https://jatoapan.pythonanywhere.com/landing/api/index/?format=json"
+API_URL = "https://nfiallo.pythonanywhere.com/landing/api/index/?format=json"
 # API_URL = "https://proyecto-kain-landing-page-default-rtdb.firebaseio.com/"

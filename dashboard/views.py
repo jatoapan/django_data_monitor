@@ -1,16 +1,17 @@
 from django.shortcuts import render
 import requests
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def dashboard(request):
     return render(request, 'dashboard/base.html')
 
+@login_required
 def index(request):
     response = requests.get(settings.API_URL)  # URL de la API
     posts = response.json()  # Convertir la respuesta a JSON
 
-    # Número total de respuestas
     total_responses = len(posts)
 
     data = {
@@ -19,3 +20,5 @@ def index(request):
     }
 
     return render(request, 'dashboard/index.html', data)
+
+
