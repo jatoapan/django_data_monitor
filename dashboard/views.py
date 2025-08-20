@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import requests
 from django.conf import settings
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from collections import Counter, defaultdict
 from datetime import datetime, timezone, timedelta
 
@@ -10,6 +10,7 @@ def dashboard(request):
     return render(request, 'dashboard/base.html')
 
 @login_required
+@permission_required('dashboard.index_viewer', raise_exception=True)
 def index(request):
     response = requests.get(settings.API_URL)  # URL de la API
     posts = response.json()  # Convertir la respuesta a JSON
