@@ -109,6 +109,7 @@ Pygments @ file:///C:/b/abs_fay9dpq4n_/croot/pygments_1684279990574/work
 pyhere==1.0.3
 pyinstaller==6.13.0
 pyinstaller-hooks-contrib==2025.4
+PyMySQL==1.1.1
 pyparsing @ file:///C:/b/abs_40z8gyj9wi/croot/pyparsing_1731445739241/work
 pyprojroot @ file:///home/conda/feedstock_root/build_artifacts/pyprojroot_1679412682637/work
 PyQt5==5.15.10
